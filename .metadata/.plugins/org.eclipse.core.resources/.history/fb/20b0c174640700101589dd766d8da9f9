@@ -1,0 +1,18 @@
+package com.coderhouse;
+
+public class ProyectoFinal {
+
+	public static void main(String[] args) {
+		
+		int[] numerosEnteros = new int[5];
+		
+		numerosEnteros[0] = 10;
+		numerosEnteros[1] = 15;
+		numerosEnteros[2] = 20;
+		numerosEnteros[3] = 25;
+		numerosEnteros[4] = 30;
+		
+		System.out.println(numerosEnteros.length);
+	}
+
+}
