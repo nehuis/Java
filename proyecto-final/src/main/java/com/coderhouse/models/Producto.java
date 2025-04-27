@@ -3,6 +3,8 @@ package com.coderhouse.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -34,6 +36,7 @@ public class Producto {
 				joinColumns = @JoinColumn(name = "producto_id"),
 				inverseJoinColumns = @JoinColumn(name = "cliente_id")
 			)
+	@JsonIgnore
 	private List<Cliente> clientes = new ArrayList<>();
 
 	public Producto() {
