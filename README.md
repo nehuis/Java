@@ -72,11 +72,6 @@ Este archivo incluye:
 - Total de la operación
 - Fecha de emisión
 
-## Documentación Swagger
-
-La documentación interactiva de la API se encuentra disponible en:
-http://localhost:8080/swagger-ui/index.html
-
 ## Manejo de errores
 
 El sistema maneja errores comunes usando un objeto de respuesta `ErrorResponseDTO`, que incluye un mensaje descriptivo y una marca de tiempo. Los errores controlados incluyen:
