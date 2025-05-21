@@ -20,12 +20,11 @@ public class OpenApiConfig {
 				.info(new Info()
 						.title("API REST Full | Java | CoderHouse")
 						.version("1.0.0")
-						.description("La API REST proporciona endpoints para administrar alumnos y "
-                        		+ "cursos en una plataforma educativa. Permite realizar operaciones "
-                        		+ "CRUD (Crear, Leer, Actualizar, Eliminar) tanto para alumnos como "
-                        		+ "para cursos. Los endpoints permiten listar, agregar, mostrar, "
-                        		+ "editar y eliminar alumnos y cursos. La API está documentada utilizando "
-                        		+ "Swagger, lo que facilita la comprensión de los endpoints y su uso.")
+						.description("La API REST proporciona endpoints para administrar clientes, "
+					            + "productos, ventas y comprobantes en un sistema de ecommerce de electrodomésticos. "
+					            + "Permite realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) sobre clientes y productos, "
+					            + "así como registrar ventas asociadas y generar comprobantes en formato PDF. "
+					            + "La documentación de los endpoints está disponible mediante Swagger, lo que facilita su exploración y prueba.")
 						.contact(new Contact()
 								.name("Nehuel Caraballo")
 								.email("nehuelcaraballo@gmail.com")
