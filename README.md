@@ -84,9 +84,30 @@ El sistema maneja errores comunes usando un objeto de respuesta `ErrorResponseDT
 - `404 Not Found`: recurso no encontrado (cliente, producto, comprobante).
 - `500 Internal Server Error`: errores inesperados del sistema.
 
-Ejemplo de respuesta:
-```json
-{
-  "mensaje": "Cliente con ID 12 no encontrado.",
-  "timestamp": "2025-05-20T19:32:00"
-}
+## Cómo ejecutar y utilizar el proyecto
+
+### 1. Clonar el repositorio
+
+```bash
+git clone https://github.com/nehuis/Java.git
+cd Java
+```
+### 2. Configurar la base de datos
+
+Asegurate de tener una base de datos MySQL corriendo. Creá una base de datos vacía y actualizá el archivo application.properties ubicado en src/main/resources/ con tus credenciales:
+
+- `spring.datasource.url=jdbc:mysql://localhost:3306/ecommerce_db`  
+- `spring.datasource.username=tu_usuario`  
+- `spring.datasource.password=tu_contraseña`
+
+### 3. Ejecutar el proyecto
+Podés correr la aplicación desde tu IDE con Maven:
+
+- `./mvnw spring-boot:run`
+
+### 4. Acceder a la documentación Swagger
+Una vez iniciado el servidor, accedé a la documentación interactiva de la API en:
+
+http://localhost:8080/swagger-ui/index.html#/
+
+Desde ahí podés probar todos los endpoints disponibles sin necesidad de herramientas externas.
