@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -15,20 +16,38 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 @Entity
+@Schema(description = "Modelo de producto")
 @Table(name = "Productos")
 public class Producto {
 	
+	@Schema(description = "ID del producto", requiredMode = Schema.RequiredMode.REQUIRED, example = "1")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
+	@Schema(description = "Nombre del producto", requiredMode = Schema.RequiredMode.REQUIRED, example = "Celular")
 	@Column(name = "Nombre", nullable = false, unique = true)
 	private String nombre;
 	
+	@Schema(description = "Precio del producto", requiredMode = Schema.RequiredMode.REQUIRED, example = "$250")
 	@Column(name = "Precio", nullable = false)
 	private double precio;
+	
+	@Schema(description = "Stock del producto", requiredMode = Schema.RequiredMode.REQUIRED, example = "10")
+	@Column(name = "Stock", nullable = false)
+	private int stock;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
@@ -39,59 +58,4 @@ public class Producto {
 	@JsonIgnore
 	private List<Cliente> clientes = new ArrayList<>();
 
-	public Producto() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public Producto(long id, String nombre, double precio) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.precio = precio;
-	}
-
-	public Producto(String nombre, double precio) {
-	    this.nombre = nombre;
-	    this.precio = precio;
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public double getPrecio() {
-		return precio;
-	}
-
-	public void setPrecio(double precio) {
-		this.precio = precio;
-	}
-
-	public List<Cliente> getClientes() {
-		return clientes;
-	}
-
-	public void setClientes(List<Cliente> clientes) {
-		this.clientes = clientes;
-	}
-
-	@Override
-	public String toString() {
-		return "Producto [id=" + id + ", nombre=" + nombre + ", precio=" + precio + ", clientes=" + clientes + "]";
-	}
-	
-	
 }

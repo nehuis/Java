@@ -1,0 +1,40 @@
+{
+	"info": {
+		"_postman_id": "4ec0f968-eeca-4430-94f4-c3ff305150dd",
+		"name": "Ventas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38647129",
+		"_collection_link": "https://www.postman.com/nehuis-4981/workspace/java/collection/38647129-4ec0f968-eeca-4430-94f4-c3ff305150dd?action=share&source=collection_link&creator=38647129"
+	},
+	"item": [
+		{
+			"name": "Crear venta",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"clienteId\": 4,\r\n  \"productos\": {\r\n    \"Laptop Acer\": 1,\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/ventas/simular",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ventas",
+						"simular"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

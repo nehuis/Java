@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="java.lang.Class">
-		<item key="selection" value="&#x09;&#x09;Objetos primerPerro = new Objetos();"/>
+		<item key="selection" value="        ComprobanteDTO comprobante = new ComprobanteDTO("/>
 		<list key="findhistory">
+			<item value="        ComprobanteDTO comprobante = new ComprobanteDTO("/>
 			<item value="&#x09;&#x09;Objetos primerPerro = new Objetos();"/>
 		</list>
 	</section>

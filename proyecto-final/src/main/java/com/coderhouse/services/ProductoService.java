@@ -1,6 +1,7 @@
 package com.coderhouse.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,13 +39,19 @@ public class ProductoService implements CrudInterface<Producto, Long> {
 	@Override
 	@Transactional
 	public Producto update(Long id, Producto productoActualizado) {
-		Producto producto = productoRepository.findById(id)
-				.orElseThrow(() -> new IllegalArgumentException("Producto no encontrado"));
-		if(productoActualizado.getNombre() != null && !productoActualizado.getNombre().isEmpty()) {
-			producto.setNombre(productoActualizado.getNombre());
-		}
-		return productoRepository.save(producto);
+	    Optional<Producto> productoOpt = productoRepository.findById(id);
+	    if (productoOpt.isEmpty()) {
+	        throw new IllegalArgumentException("Producto no encontrado con ID: " + id);
+	    }
+
+	    Producto productoExistente = productoOpt.get();
+	    productoExistente.setNombre(productoActualizado.getNombre());
+	    productoExistente.setPrecio(productoActualizado.getPrecio());
+	    productoExistente.setStock(productoActualizado.getStock());
+
+	    return productoRepository.save(productoExistente);
 	}
+
 
 	@Override
 	public void deleteById(Long id) {

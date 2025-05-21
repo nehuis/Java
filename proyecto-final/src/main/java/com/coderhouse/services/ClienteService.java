@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.coderhouse.dto.ClienteDTO;
 import com.coderhouse.interfaces.CrudInterface;
 import com.coderhouse.models.Cliente;
 import com.coderhouse.repositories.ClienteRepository;
@@ -21,12 +22,28 @@ public class ClienteService implements CrudInterface<Cliente, Long> {
 	public List<Cliente> findAll() {
 		return clienteRepository.findAll();
 	}
+	
+    @Override
+    public Cliente findById(Long id) {
+        return clienteRepository.findById(id)
+               .orElseThrow(() -> new IllegalArgumentException("Cliente no encontrado"));
+    }
 
-	@Override
-	public Cliente findById(Long id) {
-		return clienteRepository.findById(id)
-				.orElseThrow(() -> new IllegalArgumentException("Cliente no encontrado"));
-	}
+    public ClienteDTO findClienteDTOById(Long id) {
+        Cliente cliente = clienteRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Cliente no encontrado"));
+        return convertToDTO(cliente);
+    }
+
+    private ClienteDTO convertToDTO(Cliente cliente) {
+        return new ClienteDTO(
+            cliente.getId(),
+            cliente.getNombre(),
+            cliente.getApellido(),
+            cliente.getDni(),
+            cliente.getEmail()
+        );
+    }
 
 	@Override
 	@Transactional
@@ -59,11 +76,15 @@ public class ClienteService implements CrudInterface<Cliente, Long> {
 	}
 
 	@Override
+	@Transactional
 	public void deleteById(Long id) {
-		if(!clienteRepository.existsById(id)) {
-			throw new IllegalArgumentException("Cliente no encontrado");
-		}
-		clienteRepository.deleteById(id);
-	}
+	    Cliente cliente = clienteRepository.findById(id)
+	            .orElseThrow(() -> new IllegalArgumentException("Cliente no encontrado"));
 
+	    if (cliente.getVentas() != null && !cliente.getVentas().isEmpty()) {
+	        throw new IllegalStateException("No se puede eliminar el cliente porque tiene ventas asociadas");
+	    }
+
+	    clienteRepository.delete(cliente);
+	}
 }

@@ -1,0 +1,61 @@
+{
+	"info": {
+		"_postman_id": "b31f899c-c6fc-4e85-82e7-1eed84ec8da4",
+		"name": "Comprobantes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38647129",
+		"_collection_link": "https://www.postman.com/nehuis-4981/workspace/java/collection/38647129-b31f899c-c6fc-4e85-82e7-1eed84ec8da4?action=share&source=collection_link&creator=38647129"
+	},
+	"item": [
+		{
+			"name": "Buscar comprobante por ID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"clienteId\": 10,\r\n  \"productos\": {\r\n    \"Iphone 16\": 4\r\n  }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/ventas/comprobante/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ventas",
+						"comprobante",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Descargar comprobante por Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ventas/comprobante/9/pdf",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ventas",
+						"comprobante",
+						"9",
+						"pdf"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
