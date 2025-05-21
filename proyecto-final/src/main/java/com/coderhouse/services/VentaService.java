@@ -16,6 +16,8 @@ import org.springframework.stereotype.Service;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 
+import jakarta.transaction.Transactional;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
@@ -44,11 +46,13 @@ public class VentaService {
 
     @Autowired
     private DateService dateService;
-
+    
+    @Transactional
     public Map<String, Object> simularVenta(Long clienteId, Map<String, Integer> productosVendidos) {
         Map<String, Object> respuesta = new HashMap<>();
 
         try {
+        	
             Cliente cliente = clienteRepository.findById(clienteId)
                 .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
 
@@ -78,11 +82,14 @@ public class VentaService {
                 total += subtotal;
                 cantidadTotal += cantidad;
 
+                producto.setStock(producto.getStock() - cantidad);
+                productoRepository.save(producto);
+
                 DetalleVenta detalle = new DetalleVenta();
                 detalle.setProducto(producto);
                 detalle.setCantidad(cantidad);
                 detalle.setPrecioUnitario(producto.getPrecio());
-                detalle.setNombreProducto(producto.getNombre()); // ✅ importante
+                detalle.setNombreProducto(producto.getNombre());
                 detalle.setSubtotal(subtotal);
 
                 detalles.add(detalle);
